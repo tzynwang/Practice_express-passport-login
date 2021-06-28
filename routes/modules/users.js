@@ -20,7 +20,7 @@ router.get('/login', notLoggedIn, (req, res) => {
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/dashboard',
-  failureRedirect: '/user/login',
+  failureRedirect: '/users/login',
   failureFlash: true
 }))
 
@@ -50,13 +50,13 @@ router.post('/register', async (req, res) => {
   })
   await newUser.save()
   req.flash('successMessage', 'You are now register and can log in.')
-  res.redirect('/user/login')
+  res.redirect('/users/login')
 })
 
 router.get('/logout', (req, res) => {
   req.logout()
   req.flash('successMessage', 'You have logged out.')
-  res.redirect('/user/login')
+  res.redirect('/users/login')
 })
 
 module.exports = router

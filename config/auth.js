@@ -3,7 +3,7 @@ function isLoggedIn (req, res, next) {
     return next()
   }
   req.flash('errorMessage', 'Please log in to view this page.')
-  res.redirect('/user/login')
+  res.redirect('/users/login')
 }
 
 function notLoggedIn (req, res, next) {
