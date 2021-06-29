@@ -44,6 +44,12 @@ app.set('view engine', 'handlebars')
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
+// navbar register& login or logout
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  next()
+})
+
 // routes
 const routes = require('./routes')
 app.use(routes)

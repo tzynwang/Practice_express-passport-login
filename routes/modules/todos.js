@@ -62,14 +62,16 @@ router.put('/:id/edit', async (req, res) => {
 
   try {
     if (content.length) toUpdate.content = content
+    // undone to done
     if (isDone && !toUpdate.isDone) {
       toUpdate.isDone = true
       toUpdate.endDate = Date.now()
       toUpdate.duration = toUpdate.endDate - toUpdate.createdDate
     }
+    // done uncheck to undone
     if (!isDone && toUpdate.isDone) {
       toUpdate.isDone = false
-      toUpdate.endDate = toUpdate.duration = ''
+      toUpdate.endDate = toUpdate.duration = 0
     }
     await toUpdate.save()
     res.redirect(`/todos/${id}`)
