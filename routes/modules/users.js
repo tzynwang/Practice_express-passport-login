@@ -35,7 +35,7 @@ router.post('/register', async (req, res) => {
   if (!username || !email || !password) registerErrors.push({ message: 'Please fill in all fields' })
   if (email) {
     const find = await User.findOne({ email })
-    if (find) registerErrors.push({ message: 'User already exist' })
+    if (find) registerErrors.push({ message: `The email "${email}" has registered before` })
   }
   if (registerErrors.length) {
     res.render('register', { registerErrors, username, email, password })
