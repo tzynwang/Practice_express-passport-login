@@ -1,0 +1,16 @@
+<h1>Hello {{ user }}</h1>
+<ul>
+  {{#each todos}}
+  <li>
+    <input type="checkbox" {{#if this.isDone}} checked {{/if}} disabled>
+    {{this.content}}
+    <a href="/todos/{{this._id}}">View</a>
+    <a href="/todos/{{this._id}}/edit">Edit</a>
+    <form action="/todos/{{this._id}}/delete" method="POST" style="display: inline-block;">
+      <button type="submit">Delete</button>
+    </form>
+  </li>
+  {{/each}}
+</ul>
+<a href="/todos/add">Add New Todo</a>
+<a href="/users/logout">Logout</a>

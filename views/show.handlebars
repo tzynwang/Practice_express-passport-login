@@ -1,0 +1,7 @@
+<form action="/todos/{{ todo._id }}/edit" method="POST">
+  <input type="checkbox" {{#if todo.isDone}} checked {{/if}} disabled>
+  <input type="text" value="{{ todo.content }}" readonly>
+  {{#if spend}}<span>This todo spend about {{ spend }}</span>{{/if}}
+  <a href="/todos/{{todo._id}}/edit">Edit</a>
+  <a href="/">Back</a>
+</form>
