@@ -12,7 +12,6 @@ router.use(isLoggedIn)
 const { spendTime } = require('../../config/duration')
 
 router.get('/', async (req, res) => {
-  // { userId: req.user.id }
   const todos = await Todo.find({ userId: req.user.id }).lean()
   res.render('todos', { todos, user: req.user.username })
 })
@@ -56,7 +55,7 @@ router.get('/:id/edit', async (req, res) => {
   }
 })
 
-router.post('/:id/edit', async (req, res) => {
+router.put('/:id/edit', async (req, res) => {
   const id = req.params.id
   const { content, isDone } = req.body
   const toUpdate = await Todo.findOne({ _id: id })
