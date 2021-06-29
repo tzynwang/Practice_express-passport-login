@@ -1,6 +1,16 @@
 <form action="/todos/{{ todo._id }}/edit" method="POST">
-  <input type="checkbox" name="isDone" {{#if todo.isDone}} checked {{/if}}>
-  <input type="text" value="{{ todo.content }}" name="content">
-  <button type="submit">Save</button>
-  <a href="/todos">Cancel</a>
+  <div class="mb-3">
+    <label for="content" class="form-label h3">Todo: </label>
+    <input type="text" class="form-control" id="content" name="content" value="{{ todo.content }}">
+  </div>
+
+  <div class="form-check mb-3">
+    <input class="form-check-input" type="checkbox" name="isDone" id="idDone" {{#if todo.isDone}} checked {{/if}}>
+    <label class="form-check-label" for="idDone">
+      Has completed
+    </label>
+  </div>
+
+  <button class="btn btn-primary" type="submit">Save</button>
+  <a class="btn btn-link" href="/todos/{{ todo._id }}">Cancel</a>
 </form>

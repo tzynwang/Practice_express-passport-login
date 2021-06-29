@@ -1,16 +1,19 @@
 <h1>Hello {{ user }}</h1>
-<ul>
+<a href="/todos/add" class="btn btn-primary">Add New Todo</a>
+<ul class="list-group my-3">
   {{#each todos}}
-  <li>
-    <input type="checkbox" {{#if this.isDone}} checked {{/if}} disabled>
-    {{this.content}}
-    <a href="/todos/{{this._id}}">View</a>
-    <a href="/todos/{{this._id}}/edit">Edit</a>
-    <form action="/todos/{{this._id}}/delete" method="POST" style="display: inline-block;">
-      <button type="submit">Delete</button>
-    </form>
+  <li class="list-group-item d-flex justify-content-between">
+    <span class="d-flex align-items-center">
+      <input class="form-check-input me-2" type="checkbox" {{#if this.isDone}} checked {{/if}} disabled>
+      {{this.content}}
+    </span>
+    <span>
+      <a class="btn btn-primary" href="/todos/{{this._id}}">View</a>
+      <a class="btn btn-light" href="/todos/{{this._id}}/edit">Edit</a>
+      <form action="/todos/{{this._id}}/delete" method="POST" style="display: inline-block;">
+        <button class="btn btn-link" type="submit">Delete</button>
+      </form>
+    </span>
   </li>
   {{/each}}
 </ul>
-<a href="/todos/add">Add New Todo</a>
-<a href="/users/logout">Logout</a>

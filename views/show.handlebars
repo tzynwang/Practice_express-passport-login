@@ -1,7 +1,18 @@
 <form action="/todos/{{ todo._id }}/edit" method="POST">
-  <input type="checkbox" {{#if todo.isDone}} checked {{/if}} disabled>
-  <input type="text" value="{{ todo.content }}" readonly>
-  {{#if spend}}<span>This todo spend about {{ spend }}</span>{{/if}}
-  <a href="/todos/{{todo._id}}/edit">Edit</a>
-  <a href="/">Back</a>
+  <p class="h3">{{ todo.content }}</p>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="idDone" {{#if todo.isDone}} checked {{/if}} disabled>
+    <label class="form-check-label" for="idDone">
+      Has completed
+    </label>
+  </div>
+  <div>
+    <span class="me-3">Created at: {{ createdDate }}</span>
+    {{#if todo.isDone}}<span>Complete at: {{ endDate }}</span>{{/if}}
+  </div>
+  {{#if spend}}<span>This todo spend about {{ spend }} to complete.</span>{{/if}}
+  <div class="mt-3">
+    <a class="btn btn-primary" href="/todos/{{todo._id}}/edit">Edit</a>
+    <a class="btn btn-link" href="/">Back</a>
+  </div>
 </form>
