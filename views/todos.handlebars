@@ -10,10 +10,29 @@
     <span>
       <a class="btn btn-primary" href="/todos/{{this._id}}">View</a>
       <a class="btn btn-light" href="/todos/{{this._id}}/edit">Edit</a>
-      <form action="/todos/{{this._id}}/delete" method="POST" style="display: inline-block;">
-        <button class="btn btn-link" type="submit">Delete</button>
-      </form>
-    </span>
+      <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modal{{this._id}}">Delete</button>
   </li>
   {{/each}}
 </ul>
+
+{{#each todos}}
+<div class="modal fade" id="modal{{this._id}}" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="modal-title h5" id="modalLabel">Delete confirmation</p>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Delete the todo item "{{this.content}}"?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+        <form action="/todos/{{this._id}}?_method=DELETE" method="POST" style="display: inline-block;">
+          <button class="btn btn-secondary" type="submit">Yes, delete it</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}

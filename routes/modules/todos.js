@@ -12,7 +12,7 @@ router.use(isLoggedIn)
 const { spendTime } = require('../../config/duration')
 
 router.get('/', async (req, res) => {
-  const todos = await Todo.find({ userId: req.user.id }).lean()
+  const todos = await Todo.find({ userId: req.user.id, isDelete: false }).sort({ _id: -1 }).lean()
   res.render('todos', { todos, user: req.user.username })
 })
 
@@ -73,6 +73,18 @@ router.put('/:id/edit', async (req, res) => {
     }
     await toUpdate.save()
     res.redirect(`/todos/${id}`)
+  } catch (error) {
+    console.error(error)
+  }
+})
+
+router.delete('/:id', async (req, res) => {
+  const id = req.params.id
+  try {
+    const todo = await Todo.findOne({ _id: id })
+    todo.isDelete = true
+    todo.save()
+    res.redirect('/todos')
   } catch (error) {
     console.error(error)
   }
