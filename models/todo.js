@@ -24,7 +24,8 @@ const todoSchema = new Schema({
     trim: true
   },
   duration: {
-    type: Number
+    type: Number,
+    default: 0
   },
   isDelete: {
     type: Boolean,
