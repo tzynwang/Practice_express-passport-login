@@ -40,6 +40,10 @@ const expressHandlebars = require('express-handlebars')
 app.engine('handlebars', expressHandlebars({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+// method overwritten
+const methodOverride = require('method-override')
+app.use(methodOverride('_method'))
+
 // routes
 const routes = require('./routes')
 app.use(routes)
