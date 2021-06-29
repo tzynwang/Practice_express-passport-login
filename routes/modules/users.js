@@ -19,7 +19,7 @@ router.get('/login', notLoggedIn, (req, res) => {
 })
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/dashboard',
+  successRedirect: '/todos',
   failureRedirect: '/users/login',
   failureFlash: true
 }))

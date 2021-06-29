@@ -10,7 +10,7 @@ function notLoggedIn (req, res, next) {
   if (!req.isAuthenticated()) {
     return next()
   }
-  res.redirect('/dashboard')
+  res.redirect('/todos')
 }
 
 module.exports = { isLoggedIn, notLoggedIn }
