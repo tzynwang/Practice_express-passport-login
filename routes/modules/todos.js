@@ -37,8 +37,10 @@ router.get('/:id', async (req, res) => {
   const id = req.params.id
   try {
     const todo = await Todo.findById(id).lean()
+    const createdDate = new Date(todo.createdDate).toString().slice(0, 24)
+    const endDate = new Date(todo.endDate).toString().slice(0, 24)
     const spend = spendTime(todo.duration)
-    res.render('show', { todo, spend })
+    res.render('show', { todo, createdDate, endDate, spend })
   } catch (error) {
     console.error(error)
   }
@@ -57,9 +59,7 @@ router.get('/:id/edit', async (req, res) => {
 router.post('/:id/edit', async (req, res) => {
   const id = req.params.id
   const { content, isDone } = req.body
-
   const toUpdate = await Todo.findOne({ _id: id })
-  // console.log(toUpdate)
 
   try {
     if (content.length) toUpdate.content = content
@@ -72,9 +72,7 @@ router.post('/:id/edit', async (req, res) => {
       toUpdate.isDone = false
       toUpdate.endDate = toUpdate.duration = ''
     }
-
     await toUpdate.save()
-
     res.redirect(`/todos/${id}`)
   } catch (error) {
     console.error(error)
