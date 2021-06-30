@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // display message after redirect by session and flash
 const session = require('express-session')
 app.use(session({
-  secret: 'keyboard cat',
+  secret: process.env.SESSION_SECRET_KEY || 'The quick brown fox jumps over the lazy dog',
   resave: true,
   saveUninitialized: true
 }))
