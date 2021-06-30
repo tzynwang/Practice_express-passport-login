@@ -36,6 +36,18 @@ router.get('/login/facebook/callback', passport.authenticate('facebook', {
   failureFlash: true
 }))
 
+// request email and profile from Google
+router.get('/login/google', passport.authenticate('google', {
+  scope: ['email', 'profile']
+}))
+
+// response from Google
+router.get('/login/google/callback', passport.authenticate('google', {
+  successRedirect: '/todos',
+  failureRedirect: '/users/login',
+  failureFlash: true
+}))
+
 router.get('/register', notLoggedIn, (req, res) => {
   res.render('register')
 })
