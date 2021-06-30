@@ -24,6 +24,18 @@ router.post('/login', passport.authenticate('local', {
   failureFlash: true
 }))
 
+// request email and public_profile from FB
+router.get('/login/facebook', passport.authenticate('facebook', {
+  scope: ['email', 'public_profile']
+}))
+
+// response from FB
+router.get('/login/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: '/todos',
+  failureRedirect: '/users/login',
+  failureFlash: true
+}))
+
 router.get('/register', notLoggedIn, (req, res) => {
   res.render('register')
 })
