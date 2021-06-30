@@ -25,28 +25,28 @@ router.post('/login', passport.authenticate('local', {
 }))
 
 // request email and public_profile from FB
-router.get('/login/facebook', passport.authenticate('facebook', {
-  scope: ['email', 'public_profile']
-}))
+// router.get('/login/facebook', passport.authenticate('facebook', {
+//   scope: ['email', 'public_profile']
+// }))
 
 // response from FB
-router.get('/login/facebook/callback', passport.authenticate('facebook', {
-  successRedirect: '/todos',
-  failureRedirect: '/users/login',
-  failureFlash: true
-}))
+// router.get('/login/facebook/callback', passport.authenticate('facebook', {
+//   successRedirect: '/todos',
+//   failureRedirect: '/users/login',
+//   failureFlash: true
+// }))
 
 // request email and profile from Google
-router.get('/login/google', passport.authenticate('google', {
-  scope: ['email', 'profile']
-}))
+// router.get('/login/google', passport.authenticate('google', {
+//   scope: ['email', 'profile']
+// }))
 
 // response from Google
-router.get('/login/google/callback', passport.authenticate('google', {
-  successRedirect: '/todos',
-  failureRedirect: '/users/login',
-  failureFlash: true
-}))
+// router.get('/login/google/callback', passport.authenticate('google', {
+//   successRedirect: '/todos',
+//   failureRedirect: '/users/login',
+//   failureFlash: true
+// }))
 
 router.get('/register', notLoggedIn, (req, res) => {
   res.render('register')
