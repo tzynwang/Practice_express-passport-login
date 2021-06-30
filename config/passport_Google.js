@@ -11,12 +11,11 @@ function loginVerifyGoogle (passport) {
       callbackURL: process.env.GOOGLE_CALLBACK,
       profileFields: ['email', 'displayName']
     }, async (accessToken, refreshToken, profile, done) => {
-      // console.log(profile)
       const { email, given_name, sub } = profile._json
       const user = await User.findOne({ email })
       if (user) return done(null, user)
       try {
-        // add new FB user
+        // add new Google user
         const hashPassword = await bcrypt.hash(sub, saltRounds)
         const newUser = new User({
           username: given_name,
