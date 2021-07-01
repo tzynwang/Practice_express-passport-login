@@ -53,10 +53,8 @@ const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
 // navbar register& login or logout
-app.use((req, res, next) => {
-  res.locals.isAuthenticated = req.isAuthenticated()
-  next()
-})
+const { navButtons } = require('./config/auth')
+app.use(navButtons)
 
 // routes
 const routes = require('./routes')

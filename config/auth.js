@@ -13,4 +13,9 @@ function notLoggedIn (req, res, next) {
   res.redirect('/todos')
 }
 
-module.exports = { isLoggedIn, notLoggedIn }
+function navButtons (req, res, next) {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  return next()
+}
+
+module.exports = { isLoggedIn, notLoggedIn, navButtons }
