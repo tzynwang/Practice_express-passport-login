@@ -28,4 +28,14 @@ router.get('/google/callback', passport.authenticate('google', {
   failureFlash: true
 }))
 
+// LINE
+router.get('/line', passport.authenticate('line'))
+
+// response from LINE
+router.get('/line/callback', passport.authenticate('line', {
+  successRedirect: '/todos',
+  failureRedirect: '/users/login',
+  failureFlash: true
+}))
+
 module.exports = router
